@@ -208,7 +208,7 @@
  
     <section class="w-full column g-10">
         {{-- hero/marginalize --}}
-        <div style="--bg-img:url({{ asset('banners/IMG_6884.png') }});" class="marginalize hero">
+        <div style="--bg-img:url({{ asset('banners/IMG_6884.jpeg') }});" class="marginalize hero">
            {{-- glass prompt --}}
             <div class="p-10 glass-prompt p-x-20 br-1000">
                 ✨
