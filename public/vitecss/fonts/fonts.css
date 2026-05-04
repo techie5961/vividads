@@ -1,0 +1,28 @@
+/* fonts.css - Optimized SF Pro */
+/* Essential weights: Regular, Medium, Semibold, Bold, Black */
+
+
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./sf_pro/SFProText-Medium.woff2') format('opentype');
+  font-weight:100 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./sf_pro/SFProText-Heavy.woff2') format('opentype');
+  font-weight:600 ;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./sf_pro/SFProText-Black.woff2') format('opentype');
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Customizable Roulette Wheel | Dynamic Size & Colors</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(145deg, #0b0b1a 0%, #12122c 100%);
+            color: #f0f0f0;
+            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Roboto', sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(10, 10, 20, 0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 70px;
+            padding: 20px 28px 35px 28px;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+            transition: all 0.2s;
+        }
+
+        h1 {
+            margin-top: 0;
+            margin-bottom: 18px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #FFE6B0, #FFB347);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            font-size: 2.2rem;
+            text-align: center;
+        }
+
+        #wheel-wrapper {
+            position: relative;
+            margin: 15px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #wheel-container {
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        canvas {
+            display: block;
+            border-radius: 50%;
+            box-shadow: 0 0 0 8px rgba(30,30,50,0.9), 0 20px 35px rgba(0,0,0,0.4), 0 0 0 3px #ffd966 inset, 0 0 0 6px rgba(0,0,0,0.2);
+            width: 100%;
+            height: 100%;
+        }
+
+        .pointer-wrapper {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+        }
+
+        #pointer {
+            width: 0;
+            height: 0;
+            border-left: 22px solid transparent;
+            border-right: 22px solid transparent;
+            border-top: 42px solid #f4c542;
+            position: relative;
+        }
+
+        #pointer::after {
+            content: "▼";
+            position: absolute;
+            top: -52px;
+            left: -12px;
+            font-size: 26px;
+            color: #ffb347;
+            text-shadow: 0 2px 3px black;
+            opacity: 0.8;
+        }
+
+        .controls {
+            margin-top: 35px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            align-items: center;
+        }
+
+        button {
+            padding: 14px 38px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 60px;
+            background: radial-gradient(circle at 30% 10%, #e94560, #a51e3a);
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+            background: radial-gradient(circle at 30% 10%, #ff5e7e, #c42a4a);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        #result {
+            margin-top: 22px;
+            background: #0a0f1ecc;
+            backdrop-filter: blur(8px);
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-size: 1.7rem;
+            font-weight: bold;
+            text-align: center;
+            min-width: 240px;
+            border-left: 5px solid #ffb347;
+            font-family: monospace;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+        }
+
+        .config-note {
+            font-size: 0.75rem;
+            margin-top: 25px;
+            background: #1e1e2eaa;
+            border-radius: 40px;
+            padding: 8px 18px;
+            color: #bbb;
+            text-align: center;
+        }
+
+        @media (max-width: 550px) {
+            .container { padding: 12px 18px 25px; }
+            button { padding: 10px 28px; font-size: 1rem; }
+            #result { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>✨ DYNAMIC ROULETTE ✨</h1>
+    <div id="wheel-wrapper">
+        <div id="wheel-container">
+            <canvas id="wheelCanvas"></canvas>
+        </div>
+        <div class="pointer-wrapper">
+            <div id="pointer"></div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="spinBtn">🎡 SPIN NOW 🎡</button>
+    </div>
+    <div id="result">⚡ READY ⚡</div>
+    <div class="config-note">
+        ⚙️ Logic Fixed: Winning sector now aligns perfectly with the pointer.
+    </div>
+</div>
+
+<script>
+    (function(){
+        const wheelConfig = {
+            containerWidth: "min(500px, 85vw)",
+            containerHeight: "min(500px, 85vw)",
+            maxContainerWidth: "550px",
+            maxContainerHeight: "550px",
+            
+            sectors: [
+                { label: "💎 100 XP",   color: "#FF5733" },
+                { label: "🍃 Empty",    color: "#33FF57" },
+                { label: "🪙 50 Gold",  color: "#3357FF" },
+                { label: "✨ 1 Gem",    color: "#F333FF" },
+                { label: "🏆 JACKPOT",  color: "#FFBD33" },
+                { label: "🔄 Retry",    color: "#33FFF5" },
+                { label: "🔸 5 Gold",   color: "#8D33FF" },
+                { label: "🥉 Bronze",   color: "#FF3385" }
+            ],
+            
+            textColor: "#FFFFFF",
+            fontFamily: "'Segoe UI', 'Poppins', sans-serif",
+            fontSizeScale: 0.055,
+            fontWeight: "bold",
+            enableStroke: true,
+            strokeColor: "#00000055",
+            
+            minRotations: 5,
+            spinDurationMs: 3000, 
+        };
+
+        const canvas = document.getElementById('wheelCanvas');
+        const ctx = canvas.getContext('2d');
+        const spinBtn = document.getElementById('spinBtn');
+        const resultDiv = document.getElementById('result');
+        const wheelContainer = document.getElementById('wheel-container');
+        
+        let sectors = [...wheelConfig.sectors];
+        let currentRotationDeg = 0;   
+        let isSpinning = false;
+        let animationFrameId = null;
+        
+        let canvasSize = 500;
+        let radius = 250;
+        let arcAngle = 0;
+
+        function applyContainerDimensions() {
+            wheelContainer.style.width = wheelConfig.containerWidth;
+            wheelContainer.style.height = wheelConfig.containerHeight || wheelConfig.containerWidth;
+            if (wheelConfig.maxContainerWidth) wheelContainer.style.maxWidth = wheelConfig.maxContainerWidth;
+            if (wheelConfig.maxContainerHeight) wheelContainer.style.maxHeight = wheelConfig.maxContainerHeight;
+            
+            canvas.style.width = '100%';
+            canvas.style.height = '100%';
+            updateCanvasResolution();
+        }
+        
+        function updateCanvasResolution() {
+            const containerRect = wheelContainer.getBoundingClientRect();
+            let targetSize = Math.min(containerRect.width, containerRect.height);
+            if (targetSize < 20) targetSize = 400;
+            
+            canvas.width = targetSize;
+            canvas.height = targetSize;
+            canvasSize = targetSize;
+            radius = canvasSize / 2;
+            arcAngle = (Math.PI * 2) / sectors.length;
+            
+            drawFullWheel();
+        }
+        
+        function drawFullWheel() {
+            if (!ctx) return;
+            const n = sectors.length;
+            const centerX = radius;
+            const centerY = radius;
+            const startAngleOffset = -Math.PI / 2; // Start at top
+            
+            ctx.clearRect(0, 0, canvasSize, canvasSize);
+            
+            for (let i = 0; i < n; i++) {
+                const sector = sectors[i];
+                const start = startAngleOffset + i * arcAngle;
+                const end = start + arcAngle;
+                
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, radius, start, end);
+                ctx.closePath();
+                ctx.fillStyle = sector.color;
+                ctx.fill();
+                
+                if (wheelConfig.enableStroke) {
+                    ctx.strokeStyle = wheelConfig.strokeColor;
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                }
+                
+                ctx.save();
+                ctx.translate(centerX, centerY);
+                ctx.rotate(start + arcAngle / 2);
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillStyle = wheelConfig.textColor;
+                const fontSize = Math.max(12, radius * wheelConfig.fontSizeScale);
+                ctx.font = `${wheelConfig.fontWeight} ${fontSize}px ${wheelConfig.fontFamily}`;
+                ctx.fillText(sector.label, radius * 0.72, 0);
+                ctx.restore();
+            }
+            
+            // Center Decoration
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius * 0.08, 0, 2 * Math.PI);
+            ctx.fillStyle = "#FFD966";
+            ctx.fill();
+        }
+        
+        function setWheelRotation(degrees) {
+            canvas.style.transform = `rotate(${degrees}deg)`;
+        }
+        
+        function spinWheel() {
+            if (isSpinning) return;
+            
+            isSpinning = true;
+            spinBtn.disabled = true;
+            resultDiv.innerHTML = "🌀 SPINNING... 🌀";
+            
+            const totalSectors = sectors.length;
+            const randomSectorIndex = Math.floor(Math.random() * totalSectors);
+            const targetPrize = sectors[randomSectorIndex].label;
+            
+            const sectorAngleDeg = 360 / totalSectors;
+            
+            // 1. Calculate how far the center of the target slice is from the top (0°)
+            // in the wheel's internal coordinates.
+            const sliceCenterRelToTop = (randomSectorIndex * sectorAngleDeg) + (sectorAngleDeg / 2);
+            
+            // 2. To bring that slice to the pointer, we rotate the wheel CLOCKWISE
+            // by (360 - distance). 
+            const rotationToTarget = 360 - sliceCenterRelToTop;
+            
+            // 3. Add full spins for excitement
+            const fullSpins = wheelConfig.minRotations * 360;
+            
+            // 4. Calculate total delta from current position
+            const startRotation = currentRotationDeg;
+            const currentNormalized = startRotation % 360;
+            const totalDelta = fullSpins + (rotationToTarget - currentNormalized + 360) % 360;
+            
+            const targetRotation = startRotation + totalDelta;
+            const duration = wheelConfig.spinDurationMs;
+            const startTime = performance.now();
+            
+            function animateSpin(now) {
+                const elapsed = now - startTime;
+                let t = Math.min(1, elapsed / duration);
+                
+                // Cubic ease-out
+                const easeOut = 1 - Math.pow(1 - t, 3);
+                const current = startRotation + (totalDelta * easeOut);
+                
+                setWheelRotation(current);
+                
+                if (t < 1) {
+                    animationFrameId = requestAnimationFrame(animateSpin);
+                } else {
+                    currentRotationDeg = targetRotation;
+                    setWheelRotation(targetRotation);
+                    resultDiv.innerHTML = `✨ YOU WON: ${targetPrize} ✨`;
+                    isSpinning = false;
+                    spinBtn.disabled = false;
+                }
+            }
+            
+            animationFrameId = requestAnimationFrame(animateSpin);
+        }
+        
+        function init() {
+            applyContainerDimensions();
+            window.addEventListener('resize', updateCanvasResolution);
+            spinBtn.addEventListener('click', spinWheel);
+        }
+        
+        init();
+    })();
+</script>
+</body>
+</html>
