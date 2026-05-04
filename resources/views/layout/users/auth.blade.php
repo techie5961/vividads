@@ -23,7 +23,7 @@
             align-items:center;
             justify-content:center;
             padding:20px;
-            background:var(--primary);
+            background:var(--primary-dark);
             background-image:url({{ asset('banners/IMG_6884.jpeg') }});
             background-size:cover;
             background-position:center;

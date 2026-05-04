@@ -9,7 +9,8 @@
         }
         .marginalize{
 
-              background:var(--bg-img);
+            background-color:var(--primary-dark);
+            background-image:var(--bg-img);
             background-size:cover;
             background-position:center;
             padding:20px;
