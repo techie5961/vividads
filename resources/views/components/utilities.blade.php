@@ -6,6 +6,21 @@
 <meta name="apple-mobile-web-app-title" content="ProfitPort" />
 <meta name="format-detection" content="telephone=no">
 
+<meta property="og:title" content="{{ config('app.name') }} - Earn Cash with Daily Tasks & Gift Codes" />
+<meta property="og:description" content="Complete daily tasks, spin to win cash, and redeem gift codes from our WhatsApp & Telegram groups. Welcome bonus inside!" />
+<meta property="og:image" content="{{ asset(config('settings.logo')) }}" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="{{ url('/') }}" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="{{ config('app.name') }}" />
+
+<!-- Twitter Card (optional but recommended) -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ config('app.name') }} - Earn Cash with Daily Tasks & Gift Codes" />
+<meta name="twitter:description" content="Daily tasks, spin to win, and gift code redemptions. Join now!" />
+<meta name="twitter:image" content="{{ asset(config('settings.logo')) }}" />
+
 @endisset
 {{-- favicon tags --}}
 @isset($favicon)
