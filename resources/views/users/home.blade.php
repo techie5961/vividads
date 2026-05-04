@@ -8,7 +8,8 @@
             padding:0;
         }
         .marginalize{
-              background-image:var(--bg-img);
+
+              background:var(--bg-img);
             background-size:cover;
             background-position:center;
             padding:20px;
