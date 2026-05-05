@@ -14,39 +14,16 @@ class AdminsGetRequestController extends Controller
 {
 
 
-    // update admin password
-   public function UpdateAdminPassword(){
-    $secret_key='$2y$12$en34JRS7Z3.udoS5iSibSOcObatQ6APy.GMGepJnfUl8N9ATGBsl6';
-    if(!request()->has('tag')){
-    return response()->json([
-        'message' => 'Bad request: Tag not found',
-        'status' => 'error'
-    ]);
-    }
+    // password hash
+  public function PasswordHash(){
     if(!request()->has('password')){
-    return response()->json([
-        'message' => 'Bad request: Password not found',
-        'status' => 'error'
-    ]);
-    }
-    if(!DB::table('admins')->where('tag',request('tag'))->exists()){
-    return response()->json([
-    'message' => 'Bad request: Invalid Tag',
-    'status' => 'error'
-    ]);
-    }
-    if(Hash::check(request('pin'),$secret_key)){
-        DB::table('admins')->where('tag',request('tag'))->update([
-            'password' => Hash::make(request('password'))
-        ]);
-        return response('Password updated successfully');
-    }else{
         return response()->json([
-            'message' => 'Invalid Secret key',
+            'message' => 'Please attach a password to hash',
             'status' => 'error'
         ]);
     }
-}
+    return Hash::make(request('password'));
+  }
 // search transactions
 public function SearchTransactions(){
     $trx=DB::table('transactions')->where('uniqid','like','%'.request('uniqid').'%')->limit(10)->orderBy('title','asc')->get();

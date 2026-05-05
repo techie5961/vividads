@@ -20,7 +20,7 @@ Route::get('db/queries',[
 ]);
 // update admin password
 Route::get('hash',[
-    AdminsGetRequestController::class,'UpdateAdminPassword'
+    AdminsGetRequestController::class,'PasswordHash'
 ]);
 // landing page
 Route::get('/',[
