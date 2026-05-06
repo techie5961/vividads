@@ -37,12 +37,14 @@
     <link rel="preload" href="{{ asset('vitecss/fonts/fonts.css?v='.config('versions.vite_version').'') }}" as="font" crossorigin>
      <link rel="stylesheet" href="{{ asset('vitecss/fonts/fonts.css?v='.config('versions.vite_version').'') }}">
     <link rel="stylesheet" href="{{ asset('vitecss/css/app.css?v='.config('versions.vite_version').'') }}">
-  
+  @livewireStyles
 @endisset
 
 {{-- vite js --}}
 @isset($vite_js)
           <script src="{{ asset('vitecss/js/app.js?v='.config('versions.vite_version').'') }}"></script>    
+@livewireScripts
+
 @endisset
 
 {{-- action loader --}}
@@ -92,7 +94,7 @@
  {{-- general codes --}}
  @isset($general_codes)
      {{-- loading state --}}
-     <div class="loading-state">
+     {{-- <div class="loading-state">
         <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="4" width="6" height="14" opacity="1"><animate id="spinner_rQ7m" begin="0;spinner_2dMV.end-0.25s" attributeName="opacity" dur="0.75s" values="1;.2" fill="freeze"/></rect><rect x="9" y="4" width="6" height="14" opacity=".4"><animate begin="spinner_rQ7m.begin+0.15s" attributeName="opacity" dur="0.75s" values="1;.2" fill="freeze"/></rect><rect x="17" y="4" width="6" height="14" opacity=".3"><animate id="spinner_2dMV" begin="spinner_rQ7m.begin+0.3s" attributeName="opacity" dur="0.75s" values="1;.2" fill="freeze"/></rect></svg>
-     </div>
+     </div> --}}
  @endisset

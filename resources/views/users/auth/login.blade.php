@@ -46,6 +46,7 @@
                 let data=JSON.parse(response);
                 if(data.status == 'success'){
                     window.location.href='{{ url('users/dashboard') }}'
+                    // Livewire.navigate('{{ url('users/dashboard') }}')
                 }
             }
         }

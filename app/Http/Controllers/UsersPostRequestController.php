@@ -600,7 +600,7 @@ class UsersPostRequestController extends Controller
         'Account Number' => $bank->account_number,
         'Bank Name' => $bank->bank_name,
         'Account Name' => $bank->account_name,
-        'wallet' => collect(Wallets())->where('key',$wallet)[0]->name
+        'wallet' => collect(Wallets())->where('key',$wallet)->first()->name
     ]),
     'json' => json_encode([
     'balance' => [

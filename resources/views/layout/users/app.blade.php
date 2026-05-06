@@ -27,7 +27,7 @@
             top:0;
             left:0;
             right:0;
-            z-index:3000;
+            z-index:1000;
             background:transparent;
              background:var(--bg-light);
             border-bottom:1px solid var(--rgt-005);
@@ -48,7 +48,7 @@
             left:0;
             right:0;
             bottom:0;
-            z-index:4000;
+            z-index:1000;
             background:rgb(0,0,0,0.4);
             display:flex;
             flex-direction:row;
@@ -166,7 +166,7 @@
             place-items: center;
              backdrop-filter: blur(50px);
             -webkit-backdrop-filter: blur(50px);
-            z-index:2700;
+            z-index:900;
             background:var(--bg-light);
             border-top:1px solid var(--rgt-005)
         }
@@ -237,19 +237,20 @@
         /* media query for mobile devices */
         @media(max-width:800px){
            nav{
-           display:none;
-            transition: all 0.5s ease;
+          visibility:hidden;
+            /* transition: all 0.5s ease; */
            }
            nav.active{
+            visibility: visible;
             display:flex;
            }
            nav .child{
           
-            transition: all 0.5s ease;
+            /* transition: all 0.5s ease; */
            }
            nav.active .child{
            
-            animation:anime 0.5s ease forwards;
+            /* animation:anime 0s ease forwards; */
            }
            @keyframes anime {
             0%{
@@ -534,7 +535,20 @@
     'vite_js' => true
   ])
   <script>
-    window.addEventListener('load',()=>{
+    window.addEventListener('livewire:navigate',()=>{
+          document.querySelectorAll('style.css').forEach((style)=>{
+            if(style){
+                style.classList.add('old');
+            }
+        });
+        document.querySelectorAll('script.js').forEach((js)=>{
+            if(js){
+               js.classList.add('old');
+            }
+        })
+    });
+    // window.addEventListener('load',()=>{
+    window.addEventListener('livewire:navigated',()=>{
       try{
        
         document.querySelector('main').style.paddingTop=document.querySelector('header').getBoundingClientRect().height + 20 + 'px';
@@ -547,7 +561,17 @@
            document.querySelector('nav > .child .body').style.marginTop=(document.querySelector('nav > .child .header').getBoundingClientRect().height) + 'px';
             document.querySelector('nav > .child .body').style.height=Math.abs(window.innerHeight - (document.querySelector('nav > .child .header').getBoundingClientRect().height + document.querySelector('nav > .child .footer').getBoundingClientRect().height)) + 'px';
     
-
+    //   remove old and new js and css
+     document.querySelectorAll('style.css.old').forEach((style)=>{
+            if(style){
+                style.remove();
+            }
+        });
+        document.querySelectorAll('script.js.old').forEach((js)=>{
+            if(js){
+               js.remove();
+            }
+        })
        
       }catch(error){
         alert(error.stack)
@@ -577,7 +601,8 @@
 
     }
     function Redirect(url){
-        window.location.href=url;
+        // window.location.href=url;
+        Livewire.navigate(url)
     }
    
   </script>
