@@ -24,7 +24,7 @@
             justify-content:center;
             padding:20px;
             background:var(--primary-dark);
-            background-image:url({{ asset('banners/IMG_6884.jpeg') }});
+            background-image:url({{ asset('banners/IMG_7091-compressed.jpeg') }});
             background-size:cover;
             background-position:center;
         }

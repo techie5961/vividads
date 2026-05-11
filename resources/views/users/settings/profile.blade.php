@@ -99,7 +99,7 @@
         <div onclick="event.stopPropagation()" class="child">
             <strong class="desc">Update profile photo</strong>
             {{-- form --}}
-            <form action="{{ url('users/post/update/profile/photo/process') }}" onsubmit="PostRequest(event,this,MyFunc.Updated)" method="POST"  class="w-full column g-10">
+            <form action="{{ url('users/post/update/profile/photo/process') }}" onsubmit="PostRequest(event,this,Updated)" method="POST"  class="w-full column g-10">
              {{-- csrf token --}}
              <input type="hidden" name="_token" value="{{ @csrf_token() }}" class="inp input">
                 {{-- new input --}}
@@ -116,13 +116,13 @@
 @endsection
 @section('js')
     <script class="js">
-        window.MyFunc = {
-            Updated : function(response){
+       
+            function Updated(response){
                 let data=JSON.parse(response);
                 if(data.status == 'success'){
                     Redirect('{{ $url_current }}');
                 }
             }
-        }
+        
     </script>
 @endsection

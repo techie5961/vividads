@@ -720,9 +720,9 @@ class UsersPostRequestController extends Controller
        }
 
        $code=$code->first();
-        if(DB::table('redeemed_gift_codes')->where('gift_code->code',request('code'))->exists()){
+        if(DB::table('redeemed_gift_codes')->where('user_id',Auth::guard('users')->user()->id)->where('gift_code->code',request('code'))->exists()){
             return response()->json([
-                'message' => 'Gift code have already been redeemed by you',
+                'message' => 'Gift code have already been used by you',
                 'status' => 'error'
             ]);
         }

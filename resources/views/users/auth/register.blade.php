@@ -4,7 +4,7 @@
 @endsection
 @section('main')
     
-        <form action="{{ url('users/post/register/process') }}" method="POST" onsubmit="PostRequest(event,this,MyFunc.Completed)">
+        <form action="{{ url('users/post/register/process') }}" method="POST" onsubmit="PostRequest(event,this,Completed)">
             <img onclick="window.location.href='{{ url('/') }}'" style="width:30%;" src="{{ asset(config('settings.logo')) }}" alt="Site Logo">
        <strong class="de">Let's Get Started</strong>
        {{-- csrf token --}}
@@ -84,13 +84,13 @@
 @endsection
 @section('js')
     <script class="js">
-        window.MyFunc = {
-            Completed : (response)=>{
+      
+            function Completed(response){
                 let data=JSON.parse(response);
                 if(data.status == 'success'){
                     window.location.href='{{ url('users/login') }}'
                 }
             }
-        }
+        
     </script>
 @endsection

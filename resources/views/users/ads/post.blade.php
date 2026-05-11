@@ -39,7 +39,7 @@
             <div class="column g-5 w-full">
                 <label>Task Type</label>
                  <div class="cont">
-                <select onchange="MyFunc.TypeSelected(this)" name="type" class="inp input required">
+                <select onchange="TypeSelected(this)" name="type" class="inp input required">
                     <option value="" selected disabled>Click to choose...</option>
                     @foreach ($categories as $data)
                        

@@ -9,14 +9,14 @@
         <div style="border:1px solid var(--rgt-005)" class="w-full br-primary p-20 column bg-light g-10">
             <strong class="font-size-1-5">Withdraw Funds</strong>
             <span class="opacity-07">Withdraw your earnings directly into your bank account</span>
-            <form action="{{ url('users/post/withdrawal/process') }}" method="POST" onsubmit="PostRequest(event,this,MyFunc.Withdrawn)" class="w-full column g-10">
+            <form action="{{ url('users/post/withdrawal/process') }}" method="POST" onsubmit="PostRequest(event,this,Withdrawn)" class="w-full column g-10">
               {{-- csrf token --}}
               <input type="hidden" class="inp input" name="_token" value="{{ @csrf_token() }}">
                 {{-- new input --}}
                 <div class="column g-5 w-full">
                     <label>Select Wallet</label>
                     <div class="cont">
-                        <select onchange="MyFunc.PromptUser(this)" name="wallet" class="inp input reqiured">
+                        <select onchange="PromptUser(this)" name="wallet" class="inp input reqiured">
                             <option value="" selected disabled>Click to choose...</option>
                             @foreach ($wallets as $data)
                                   <option data-minimum="{{ $currency.number_format($finance_settings->withdrawal->{$data->key}->minimum) }}" data-maximum="{{ $currency.number_format($finance_settings->withdrawal->{$data->key}->maximum) }}" value="{{ $data->key }}">{{ $data->name }} - {{ $currency.number_format(Auth::guard('users')->user()->{$data->key},2) }}</option>
@@ -73,14 +73,14 @@
 
 @section('js')
     <script class="js">
-        window.MyFunc = {
-            Withdrawn : (response)=>{
+       
+            function Withdrawn(response){
                     let data=JSON.parse(response);
                     if(data.status == 'success'){
                         Redirect(data.url);
                     }
-            },
-            PromptUser : (element)=>{
+            }
+            function PromptUser(element){
                 try{
                     let min=element.options[element.selectedIndex].dataset.minimum;
                     let max=element.options[element.selectedIndex].dataset.maximum;
@@ -90,6 +90,6 @@
                     alert(error)
                 }
             }
-        }
+        
     </script>
 @endsection

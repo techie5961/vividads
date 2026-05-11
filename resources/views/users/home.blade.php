@@ -56,7 +56,8 @@
             width:fit-content;
             margin-left:auto;
             margin-right:auto;
-            box-shadow:0 0 10px rgba(0,0,0,0.5)
+            box-shadow:0 0 10px rgba(0,0,0,0.5);
+            
           
         }
         .banner{
@@ -209,14 +210,14 @@
  
     <section class="w-full column g-10">
         {{-- hero/marginalize --}}
-        <div style="--bg-img:url({{ asset('banners/IMG_6884.jpeg') }});" class="marginalize hero">
+        <div style="--bg-img:url({{ asset('banners/IMG_7091-compressed.jpeg') }});" class="marginalize hero">
            {{-- glass prompt --}}
             <div class="p-10 glass-prompt p-x-20 br-1000">
                 ✨
                 <span>Trusted by 5k+ Users</span>
             </div>
             {{-- hero text --}}
-            <strong class="font-size-2 hero-text">Earn, Advertise & <br> <span style="color:var(--primary-lighter)">Dominate Social Media</span></strong>
+            <strong class="font-size-2 hero-text">Earn, Advertise & <br> <span style="color:hsl(var(--primary-hsl),90%,80%)">Dominate Social Media</span></strong>
         {{-- new --}}
          <span>Join {{ config('app.name') }} — the micro-gig revolution. Complete tasks, earn real rewards, or place ads in seconds. Daily spins, gift codes, and instant earnings await.</span>
            {{-- new row --}}

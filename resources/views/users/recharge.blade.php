@@ -56,7 +56,7 @@
            
         </div>
         {{-- form --}}
-         <form action="{{ url('users/post/recharge/process') }}" onsubmit="PostRequest(event,this,MyFunc.Completed)" style="border:1px solid var(--rgt-005);" class="w-full column g-10 p-20 br-primary bg-light">
+         <form action="{{ url('users/post/recharge/process') }}" onsubmit="PostRequest(event,this,Completed)" style="border:1px solid var(--rgt-005);" class="w-full column g-10 p-20 br-primary bg-light">
        <strong class="desc">Deposit Form</strong>
            {{-- csrf token --}}
            <input type="hidden" name="_token" value="{{ @csrf_token() }}" class="inp input">
@@ -86,13 +86,13 @@
 @endsection
 @section('js')
   <script class="js">
-    window.MyFunc = {
-        Completed : (response)=>{
+   
+        function Completed(response){
             let data=JSON.parse(response);
             if(data.status == 'success'){
                 Redirect(data.url)
             }
         }
-    }
+    
     </script>  
 @endsection

@@ -17,6 +17,65 @@
 
 {{-- yield css --}}
      @yield('css')
+
+      @include('components.utilities',[
+    'vite_js' => true
+  ])
+  <script>
+    function StyleUp(){
+       
+      try{
+       
+        document.querySelector('body').style.paddingTop=document.querySelector('header').getBoundingClientRect().height + 'px';
+         document.querySelector('nav > .child .body').style.height=Math.abs(window.innerHeight - (document.querySelector('nav > .child .header').getBoundingClientRect().height + document.querySelector('nav > .child .footer').getBoundingClientRect().height)) + 'px';
+      document.querySelector('.header-links').style.top=document.querySelector('header').getBoundingClientRect().bottom + 'px';
+       document.querySelector('body').style.paddingBottom=document.querySelector('footer').getBoundingClientRect().height + 'px';
+      if(window.innerWidth >= 800){
+            document.querySelector('nav > .child .header').style.minHeight=document.querySelector('header').getBoundingClientRect().height + 'px';
+        }
+           document.querySelector('nav > .child .body').style.marginTop=(document.querySelector('nav > .child .header').getBoundingClientRect().height) + 'px';
+            document.querySelector('nav > .child .body').style.height=Math.abs(window.innerHeight - (document.querySelector('nav > .child .header').getBoundingClientRect().height + document.querySelector('nav > .child .footer').getBoundingClientRect().height)) + 'px';
+    
+   
+       
+      }catch(error){
+        alert(error.stack)
+      }
+    }
+    window.addEventListener('load',()=>{
+        StyleUp();
+    });
+
+  
+    function ToggleNav(element){
+       
+        let nav=document.querySelector('nav');
+            if(nav.classList.contains('active')){
+                 nav.classList.remove('active');
+         
+            }else{
+                 nav.classList.add('active');
+         
+            }
+               document.querySelector('nav > .child .body').style.marginTop=(document.querySelector('nav > .child .header').getBoundingClientRect().height) + 'px';
+            document.querySelector('nav > .child .body').style.height=Math.abs(window.innerHeight - (document.querySelector('nav > .child .header').getBoundingClientRect().height + document.querySelector('nav > .child .footer').getBoundingClientRect().height)) + 'px';
+    
+    }
+    function ToggleHeaderLinks(element){
+        let header_links=document.querySelector('.header-links');
+        if(header_links.classList.contains('active')){
+            header_links.classList.remove('active');
+        }else{
+            header_links.classList.add('active');
+        }
+
+    }
+    function Redirect(url){
+        // window.location.href=url;
+        Vitecss.navigate(url)
+    }
+   
+  </script>
     <title>{{ config('app.name') }} || Users || @yield('title') </title>
     <style>
       body{
@@ -182,7 +241,7 @@
            
         }
         footer > div.active{
-            color:var(--primary-dark);
+            color:var(--primary);
         }
         main{
             overflow-x: hidden;
@@ -531,81 +590,7 @@
              <span>Profile</span>
         </div>
     </footer>
-  @include('components.utilities',[
-    'vite_js' => true
-  ])
-  <script>
-    window.addEventListener('livewire:navigate',()=>{
-          document.querySelectorAll('style.css').forEach((style)=>{
-            if(style){
-                style.classList.add('old');
-            }
-        });
-        document.querySelectorAll('script.js').forEach((js)=>{
-            if(js){
-               js.classList.add('old');
-            }
-        })
-    });
-    // window.addEventListener('load',()=>{
-    window.addEventListener('livewire:navigated',()=>{
-      try{
-       
-        document.querySelector('main').style.paddingTop=document.querySelector('header').getBoundingClientRect().height + 20 + 'px';
-         document.querySelector('nav > .child .body').style.height=Math.abs(window.innerHeight - (document.querySelector('nav > .child .header').getBoundingClientRect().height + document.querySelector('nav > .child .footer').getBoundingClientRect().height)) + 'px';
-      document.querySelector('.header-links').style.top=document.querySelector('header').getBoundingClientRect().bottom + 'px';
-       document.querySelector('main').style.paddingBottom=document.querySelector('footer').getBoundingClientRect().height + 10 + 'px';
-      if(window.innerWidth >= 800){
-            document.querySelector('nav > .child .header').style.minHeight=document.querySelector('header').getBoundingClientRect().height + 'px';
-        }
-           document.querySelector('nav > .child .body').style.marginTop=(document.querySelector('nav > .child .header').getBoundingClientRect().height) + 'px';
-            document.querySelector('nav > .child .body').style.height=Math.abs(window.innerHeight - (document.querySelector('nav > .child .header').getBoundingClientRect().height + document.querySelector('nav > .child .footer').getBoundingClientRect().height)) + 'px';
-    
-    //   remove old and new js and css
-     document.querySelectorAll('style.css.old').forEach((style)=>{
-            if(style){
-                style.remove();
-            }
-        });
-        document.querySelectorAll('script.js.old').forEach((js)=>{
-            if(js){
-               js.remove();
-            }
-        })
-       
-      }catch(error){
-        alert(error.stack)
-      }
-    });
-    function ToggleNav(element){
-       
-        let nav=document.querySelector('nav');
-            if(nav.classList.contains('active')){
-                 nav.classList.remove('active');
-         
-            }else{
-                 nav.classList.add('active');
-         
-            }
-               document.querySelector('nav > .child .body').style.marginTop=(document.querySelector('nav > .child .header').getBoundingClientRect().height) + 'px';
-            document.querySelector('nav > .child .body').style.height=Math.abs(window.innerHeight - (document.querySelector('nav > .child .header').getBoundingClientRect().height + document.querySelector('nav > .child .footer').getBoundingClientRect().height)) + 'px';
-    
-    }
-    function ToggleHeaderLinks(element){
-        let header_links=document.querySelector('.header-links');
-        if(header_links.classList.contains('active')){
-            header_links.classList.remove('active');
-        }else{
-            header_links.classList.add('active');
-        }
-
-    }
-    function Redirect(url){
-        // window.location.href=url;
-        Livewire.navigate(url)
-    }
-   
-  </script>
+ 
   {{-- yield js --}}
     @yield('js')
 </body>

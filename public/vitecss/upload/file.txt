@@ -1,14 +1,902 @@
-<meta property="og:title" content="TaskHub - Earn Cash with Daily Tasks & Gift Codes" />
-<meta property="og:description" content="Complete daily tasks, spin to win cash, and redeem gift codes from our WhatsApp & Telegram groups. Welcome bonus inside!" />
-<meta property="og:image" content="https://yourdomain.com/og-image.jpg" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://yourdomain.com" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="TaskHub" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>WenorGigs — Daily Tasks, Spin, VTU & Marketplace</title>
+  <meta name="description" content="Join WenorGigs: complete daily tasks, claim gift codes, spin to win, trade in marketplace, and buy data & electricity. Earn real rewards daily.">
+  <!-- Remix Icon CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<!-- Twitter Card (optional but recommended) -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="TaskHub - Earn Cash with Daily Tasks & Gift Codes" />
-<meta name="twitter:description" content="Daily tasks, spin to win, and gift code redemptions. Join now!" />
-<meta name="twitter:image" content="https://yourdomain.com/og-image.jpg" />
+    :root {
+      --light-bg: #FEFCF8;
+      --light-surface: #FFFFFF;
+      --light-card: #FFF9F0;
+      --accent: #FF4500;
+      --accent-dark: #CC3700;
+      --accent-glow: rgba(255, 69, 0, 0.08);
+      --text-dark: #1F1A15;
+      --text-muted: #6B5A4E;
+      --border-light: rgba(0, 0, 0, 0.05);
+      --shadow-sm: 0 8px 20px -6px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 20px 30px -12px rgba(0, 0, 0, 0.08);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--light-bg);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    /* no horizontal overflow */
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    /* navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 252, 245, 0.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .nav-logo-img {
+      width: 36px;
+      height: 36px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .nav-logo-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 2px;
+      color: var(--accent);
+    }
+
+    .nav-badge {
+      background: rgba(255, 69, 0, 0.1);
+      border: 1px solid rgba(255, 69, 0, 0.2);
+      color: var(--accent-dark);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 40px;
+      white-space: nowrap;
+    }
+
+    /* hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 110px 20px 60px;
+      position: relative;
+      width: 100%;
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 48px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-content {
+      flex: 1;
+      min-width: 280px;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .hero-visual {
+      flex: 1;
+      position: relative;
+      min-width: 280px;
+      animation: fadeInUp 0.6s ease-out 0.1s both;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(255, 69, 0, 0.2);
+      padding: 6px 18px;
+      border-radius: 60px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+
+    .hero-pill-dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(42px, 10vw, 88px);
+      line-height: 0.94;
+      letter-spacing: -1px;
+      color: var(--text-dark);
+    }
+
+    .hero-title .line-2 {
+      background: linear-gradient(135deg, var(--accent), #FF7A3F);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-title .line-3 {
+      font-size: 0.55em;
+      color: var(--text-muted);
+      -webkit-text-fill-color: var(--text-muted);
+      letter-spacing: 3px;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: #5C4E3F;
+      max-width: 460px;
+      margin: 24px 0 32px;
+      line-height: 1.55;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(105deg, var(--accent), var(--accent-dark));
+      color: white;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 2px;
+      padding: 14px 38px;
+      border-radius: 60px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 18px rgba(255, 69, 0, 0.25);
+      border: none;
+      cursor: pointer;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(255, 69, 0, 0.3);
+    }
+
+    .cta-note {
+      font-size: 13px;
+      color: #7B6B5C;
+    }
+
+    .cta-note span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .hero-winner-img {
+      width: 100%;
+      max-width: 480px;
+      border-radius: 32px;
+      object-fit: cover;
+      aspect-ratio: 4/3;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .hero-phone-wrapper {
+      position: absolute;
+      bottom: -10px;
+      right: -5px;
+      width: 130px;
+      animation: float 4s infinite;
+      filter: drop-shadow(0 12px 20px rgba(0,0,0,0.08));
+    }
+
+    .mini-phone {
+      background: #fff;
+      border-radius: 24px;
+      padding: 6px;
+      border: 2px solid #e6ddd2;
+    }
+
+    .mini-phone img {
+      width: 100%;
+      border-radius: 18px;
+      display: block;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ticker */
+    .ticker-wrap {
+      background: #FFF8F0;
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      overflow: hidden;
+      padding: 14px 0;
+      width: 100%;
+    }
+
+    .ticker {
+      display: flex;
+      gap: 48px;
+      animation: ticker-scroll 30s linear infinite;
+      width: max-content;
+    }
+
+    .ticker-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 15px;
+      letter-spacing: 1px;
+      color: #897B6C;
+    }
+
+    .ticker-item i {
+      font-size: 16px;
+      color: var(--accent);
+    }
+
+    .ticker-item .name { color: var(--accent); font-weight: 600; }
+
+    @keyframes ticker-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* sections */
+    .section {
+      padding: 70px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .section-label i {
+      font-size: 16px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(32px, 7vw, 52px);
+      letter-spacing: 1px;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      line-height: 1.1;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: #5C4E3F;
+      max-width: 540px;
+      line-height: 1.5;
+      margin-bottom: 48px;
+    }
+
+    /* feature grid */
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .value-card {
+      background: var(--light-surface);
+      border-radius: 28px;
+      padding: 32px 24px;
+      box-shadow: var(--shadow-sm);
+      transition: 0.2s;
+      border: 1px solid var(--border-light);
+    }
+
+    .value-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(255, 69, 0, 0.2);
+    }
+
+    .value-icon {
+      font-size: 42px;
+      margin-bottom: 20px;
+      display: inline-block;
+      color: var(--accent);
+    }
+
+    .value-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      letter-spacing: 1px;
+      color: var(--accent-dark);
+      margin-bottom: 10px;
+    }
+
+    .value-card p {
+      font-size: 15px;
+      color: #5C4E3F;
+      line-height: 1.5;
+    }
+
+    /* stats bar */
+    .proof-bar {
+      background: #FFF9F2;
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      padding: 48px 20px;
+      width: 100%;
+    }
+
+    .proof-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .proof-stat .num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 44px;
+      color: var(--accent);
+    }
+
+    .proof-stat .label {
+      font-size: 13px;
+      color: #8A7A6A;
+      font-weight: 500;
+    }
+
+    /* how it works */
+    .how-section {
+      padding: 70px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .how-layout {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .how-left {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .how-right {
+      flex: 1;
+      min-width: 260px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .steps-container {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      width: 50px;
+      height: 50px;
+      background: var(--accent-glow);
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      color: var(--accent);
+      border: 1px solid rgba(255, 69, 0, 0.2);
+    }
+
+    .step-content h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .step-content p {
+      font-size: 15px;
+      color: #6E5F4F;
+    }
+
+    .phone-mockup {
+      width: 260px;
+      margin: 0 auto;
+    }
+
+    .phone-frame {
+      background: #fff;
+      border-radius: 40px;
+      padding: 10px;
+      box-shadow: 0 25px 45px -12px rgba(0,0,0,0.2);
+      border: 1px solid #eee6dd;
+    }
+
+    .phone-screen img {
+      width: 100%;
+      border-radius: 28px;
+      display: block;
+    }
+
+    /* perks grid */
+    .perks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .perk {
+      background: var(--light-surface);
+      border-radius: 24px;
+      padding: 32px 24px;
+      border: 1px solid var(--border-light);
+      transition: 0.2s;
+    }
+
+    .perk:hover {
+      border-color: var(--accent);
+    }
+
+    .perk i {
+      font-size: 38px;
+      color: var(--accent);
+      margin-bottom: 18px;
+      display: inline-block;
+    }
+
+    .perk h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      color: var(--accent-dark);
+      margin-bottom: 8px;
+    }
+
+    .perk p {
+      font-size: 14px;
+      color: #6E5F4F;
+      line-height: 1.5;
+    }
+
+    /* banner */
+    .winner-banner {
+      border-radius: 28px;
+      overflow: hidden;
+      background: var(--light-surface);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .winner-banner-content {
+      flex: 1;
+      padding: 40px 32px;
+      min-width: 260px;
+    }
+
+    .winner-banner-img {
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .winner-banner-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* faq */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background: var(--light-surface);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+    }
+
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      font-weight: 600;
+      font-size: 17px;
+      padding: 20px 24px;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      color: var(--text-dark);
+    }
+
+    .faq-q i {
+      color: var(--accent);
+      font-size: 22px;
+      transition: 0.2s;
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: 0.3s ease;
+    }
+
+    .faq-a-inner {
+      padding: 0 24px 24px;
+      color: #6C5D4E;
+      line-height: 1.6;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 220px;
+    }
+
+    .urgency-strip {
+      background: rgba(255, 69, 0, 0.05);
+      padding: 14px 20px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-dark);
+      border-top: 1px solid rgba(255, 69, 0, 0.1);
+      border-bottom: 1px solid rgba(255, 69, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .final-cta {
+      text-align: center;
+      padding: 80px 20px 90px;
+    }
+
+    .final-cta-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(38px, 8vw, 76px);
+      color: var(--text-dark);
+      max-width: 700px;
+      margin: 0 auto 12px;
+    }
+
+    .final-cta-title span {
+      color: var(--accent);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 32px 20px;
+      border-top: 1px solid var(--border-light);
+      font-size: 13px;
+      color: #9B8A7A;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 800px) {
+      .hero-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-cta-group {
+        align-items: center;
+      }
+      .hero-sub {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-visual {
+        max-width: 420px;
+        margin: 0 auto;
+      }
+      .how-layout {
+        flex-direction: column;
+      }
+      .winner-banner {
+        flex-direction: column;
+      }
+      .winner-banner-content {
+        order: 2;
+      }
+      .value-grid, .perks-grid {
+        grid-template-columns: 1fr;
+      }
+      .proof-inner {
+        gap: 36px;
+      }
+      .step {
+        flex-direction: row;
+      }
+      .phone-mockup {
+        width: 220px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar {
+        padding: 10px 16px;
+      }
+      .nav-logo-text {
+        font-size: 18px;
+      }
+      .cta-btn {
+        padding: 12px 28px;
+        font-size: 18px;
+      }
+      .section {
+        padding: 50px 16px;
+      }
+      .value-card, .perk {
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="#" class="nav-logo">
+    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=100&h=100&fit=crop" alt="WenorGigs" class="nav-logo-img">
+    <span class="nav-logo-text">WENORGIGS</span>
+  </a>
+  <span class="nav-badge">LIVE · EARN NOW</span>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-pill">
+        <span class="hero-pill-dot"></span> Daily Rewards · VTU Hub
+      </div>
+      <h1 class="hero-title">
+        EARN DAILY,<br>
+        <span class="line-2">SPIN & WIN.</span>
+        <span class="line-3">GIFT CODES · MARKETPLACE</span>
+      </h1>
+      <p class="hero-sub">
+        Complete daily tasks, claim gift codes, spin the wheel, trade in the marketplace, and buy cheap data & electricity. All in one super-app.
+      </p>
+      <div class="hero-cta-group">
+        <a href="#" class="cta-btn"><i class="ri-telegram-line"></i> JOIN WENORGIGS</a>
+        <p class="cta-note">First 500 users get <span>₦2,000 bonus + free spin</span></p>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop" alt="Earnings dashboard" class="hero-winner-img">
+      <div class="hero-phone-wrapper">
+        <div class="mini-phone">
+          <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=300&h=500&fit=crop" alt="Daily spin preview">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="ticker-item"><i class="ri-star-fill"></i> <span class="name">USER_EMILY</span> won ₦5,000 via Daily Spin</span>
+    <span class="ticker-item"><i class="ri-gift-fill"></i> <span class="name">GIFT_CODE</span> “WENOR100” claimed by 230 users</span>
+    <span class="ticker-item"><i class="ri-store-3-fill"></i> <span class="name">Marketplace</span> 45 trades today</span>
+    <span class="ticker-item"><i class="ri-flashlight-fill"></i> <span class="name">VTU BONUS</span> 10GB data sold 2 mins ago</span>
+    <span class="ticker-item"><i class="ri-star-fill"></i> <span class="name">USER_KUNLE</span> won ₦12,500 from tasks</span>
+    <span class="ticker-item"><i class="ri-gift-fill"></i> <span class="name">GIFT_CODE</span> “SPIN24” active now</span>
+  </div>
+</div>
+
+<section class="section reveal">
+  <div class="section-label"><i class="ri-flashlight-fill"></i> Core Features</div>
+  <h2 class="section-title">Your Daily Earning Engine</h2>
+  <div class="value-grid">
+    <div class="value-card"><i class="ri-checkbox-circle-line value-icon"></i><h3>Daily Tasks</h3><p>Complete simple tasks, earn coins & withdrawable rewards. Refreshed every 24h.</p></div>
+    <div class="value-card"><i class="ri-coupon-3-line value-icon"></i><h3>Gift Code</h3><p>Redeem exclusive codes from events & social media to get instant credits.</p></div>
+    <div class="value-card"><i class="ri-wheelchair-line value-icon"></i><h3>Daily Spin</h3><p>Spin the wheel once a day — win cash, bonuses, or premium gift codes.</p></div>
+    <div class="value-card"><i class="ri-store-3-line value-icon"></i><h3>Marketplace</h3><p>Buy & sell digital goods, gaming items, and gift cards with other users.</p></div>
+    <div class="value-card"><i class="ri-smartphone-line value-icon"></i><h3>VTU Services</h3><p>Buy airtime, data bundles, and electricity tokens instantly at best rates.</p></div>
+    <div class="value-card"><i class="ri-bank-card-line value-icon"></i><h3>Instant Withdrawals</h3><p>Withdraw your earnings directly to bank or mobile money, no delays.</p></div>
+  </div>
+</section>
+
+<div class="proof-bar reveal">
+  <div class="proof-inner">
+    <div class="proof-stat"><div class="num">₦12M+</div><div class="label">Total Rewards Paid</div></div>
+    <div class="proof-stat"><div class="num">25K+</div><div class="label">Active Users</div></div>
+    <div class="proof-stat"><div class="num">1,200+</div><div class="label">Daily Spins</div></div>
+  </div>
+</div>
+
+<section class="how-section reveal">
+  <div class="how-layout">
+    <div class="how-left">
+      <div class="section-label"><i class="ri-information-line"></i> How WenorGigs works</div>
+      <h2 class="section-title">Start Earning in 3 Simple Steps</h2>
+      <div class="steps-container">
+        <div class="step"><div class="step-num">1</div><div class="step-content"><h3>Sign up & get bonus</h3><p>Create free account & receive welcome credits + first Gift Code.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><h3>Complete daily tasks / Spin</h3><p>Earn by doing tasks, use daily spin, or redeem gift codes.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><h3>Withdraw or shop VTU / Marketplace</h3><p>Cash out earnings or spend on data, electricity, and marketplace deals.</p></div></div>
+      </div>
+    </div>
+    <div class="how-right">
+      <div class="phone-mockup">
+        <div class="phone-frame"><div class="phone-screen"><img src="https://images.unsplash.com/photo-1611162616305-c8c8e5d5123d?w=500&h=800&fit=crop" alt="app interface"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="winner-banner">
+    <div class="winner-banner-content">
+      <div class="section-label"><i class="ri-exchange-dollar-line"></i> Marketplace & VTU Hub</div>
+      <h2>Buy & sell with ease.<br><span style="color: var(--accent);">Power your everyday.</span></h2>
+      <p>Get instant data, airtime, and electricity tokens directly inside the app. List your own items in the marketplace — gift cards, accounts, digital services.</p>
+      <a href="#" class="cta-btn" style="margin-top: 10px;">Explore Marketplace <i class="ri-arrow-right-line"></i></a>
+    </div>
+    <div class="winner-banner-img"><img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=450&fit=crop" alt="VTU services"></div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="section-label"><i class="ri-medal-line"></i> Exclusive Perks</div>
+  <h2 class="section-title">More reasons to join</h2>
+  <div class="perks-grid">
+    <div class="perk"><i class="ri-gift-fill"></i><h4>Daily Gift Code Drops</h4><p>New free codes every morning — first come first serve.</p></div>
+    <div class="perk"><i class="ri-repeat-line"></i><h4>Spin Streak Bonus</h4><p>Spin 7 days in a row and unlock massive multipliers.</p></div>
+    <div class="perk"><i class="ri-shield-check-line"></i><h4>Escrow Marketplace</h4><p>Safe peer-to-peer trades with protection for both sides.</p></div>
+    <div class="perk"><i class="ri-percent-line"></i><h4>VTU Cashback</h4><p>Get up to 5% back on every data or electricity purchase.</p></div>
+    <div class="perk"><i class="ri-vip-crown-line"></i><h4>OG Badge</h4><p>First 1000 users get OG status + lifetime rewards.</p></div>
+    <div class="perk"><i class="ri-user-add-line"></i><h4>Referral Booster</h4><p>Earn 20% of your friend's daily task earnings forever.</p></div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="section-label"><i class="ri-question-line"></i> Questions</div>
+  <h2 class="section-title">Got questions? We've got answers.</h2>
+  <div class="faq-list">
+    <div class="faq-item"><button class="faq-q">What is WenorGigs? <i class="ri-add-line"></i></button><div class="faq-a"><div class="faq-a-inner">WenorGigs is a daily earning platform featuring tasks, spin wheel, gift codes, a marketplace, and VTU services — all built for convenience.</div></div></div>
+    <div class="faq-item"><button class="faq-q">How do I get gift codes? <i class="ri-add-line"></i></button><div class="faq-a"><div class="faq-a-inner">Gift codes are shared daily via our Telegram channel and email newsletters. Stay active!</div></div></div>
+    <div class="faq-item"><button class="faq-q">Can I withdraw my spin winnings? <i class="ri-add-line"></i></button><div class="faq-a"><div class="faq-a-inner">Yes! Every coin and cash won via spin or tasks is real and withdrawable to your bank.</div></div></div>
+    <div class="faq-item"><button class="faq-q">What VTU services are offered? <i class="ri-add-line"></i></button><div class="faq-a"><div class="faq-a-inner">Data plans (MTN, Glo, Airtel), airtime, and electricity tokens for all Nigerian providers.</div></div></div>
+  </div>
+</section>
+
+<div class="urgency-strip">
+  <i class="ri-fire-line"></i> Limited daily spin multiplier active — join before April 30th and get double rewards! <i class="ri-fire-line"></i>
+</div>
+
+<section class="final-cta reveal">
+  <h2 class="final-cta-title">YOUR DAILY WHEEL<span> IS SPINNING.</span></h2>
+  <p class="final-cta-sub">Unlock tasks, gift codes, VTU discounts, and marketplace access. Sign up now — your first spin is free.</p>
+  <a href="#" class="cta-btn"><i class="ri-cup-line"></i> CLAIM FREE SPIN →</a>
+</section>
+
+<footer class="footer">
+  <p>© 2026 WenorGigs — Earn, Spin & Win. All rights reserved. — <a href="#" style="color:#FF4500;">support@wenorgigs.com</a></p>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // FAQ toggle
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const btn = item.querySelector('.faq-q');
+    btn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      item.classList.toggle('open');
+      const icon = btn.querySelector('i');
+      if (icon) icon.classList.toggle('ri-add-line');
+      if (icon) icon.classList.toggle('ri-subtract-line');
+    });
+  });
+</script>
+</body>
+</html>

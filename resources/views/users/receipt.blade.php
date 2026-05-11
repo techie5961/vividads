@@ -4,6 +4,9 @@
 @endsection
 @section('css')
     <style class="css">
+        body{
+            padding-top:0 !important;
+        }
         header{
             display:none !important;
         }

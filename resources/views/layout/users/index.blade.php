@@ -168,8 +168,8 @@
     <img src="{{ asset(config('settings.logo')) }}" alt="" class="h-30">
     {{-- app name --}}
     <div class="row m-right-auto g-5">
-        <strong class="font-1">{{ explode(' ',config('app.name'))[0] }}</strong>
-        <strong class="font-1 c-primary">{{ explode(' ',config('app.name'))[1] }}.</strong>
+        <strong class="font-1">{{ explode(' ',config('app.name'))[0] ?? '' }}</strong>
+        <strong class="font-1 c-primary">{{ explode(' ',config('app.name'))[1] ?? '' }}.</strong>
     </div>
     {{-- menu icon --}}
     <div onclick="this.classList.toggle('active');document.querySelector('nav').classList.toggle('active')" class="menu-icon">
@@ -211,8 +211,8 @@
     <footer>
  {{-- app name --}}
     <div class="row m-right-auto g-5">
-        <strong class="desc">{{ explode(' ',config('app.name'))[0] }}</strong>
-        <strong class="desc c-primary">{{ explode(' ',config('app.name'))[1] }}.</strong>
+        <strong class="desc">{{ explode(' ',config('app.name'))[0] ?? '' }}</strong>
+        <strong class="desc c-primary">{{ explode(' ',config('app.name'))[1] ?? '' }}.</strong>
     </div>
     {{-- new --}}
     <span>Micro gigs for social media earnings & advertising</span>

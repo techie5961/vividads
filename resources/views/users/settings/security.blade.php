@@ -3,7 +3,7 @@
     Security Settings
 @endsection
 @section('main')
-    <form action="{{ url('users/post/update/password/process') }}" onsubmit="PostRequest(event,this,MyFunc.Updated)" style="border:1px solid var(--rgt-005)" class="w-full p-20 column g-10 bg-light br-primary">
+    <form action="{{ url('users/post/update/password/process') }}" onsubmit="PostRequest(event,this,Updated)" style="border:1px solid var(--rgt-005)" class="w-full p-20 column g-10 bg-light br-primary">
         <strong class="desc">Security Settings</strong>
      {{-- csrf token --}}
      <input type="hidden" name="_token" value="{{ @csrf_token() }}" class="inp input">
@@ -36,13 +36,13 @@
 @endsection
 @section('js')
     <script class="js">
-        window.MyFunc = {
-            Updated : (response)=>{
+     
+            function Updated(response)=>{
                 let data=JSON.parse(response);
                 if(data.status == 'success'){
                    Redirect('{{ $url_current }}');
                 }
             }
-        }
+        
     </script>
 @endsection

@@ -79,7 +79,7 @@
     </section>
     {{-- upgrade modal --}}
     <section onclick="this.classList.remove('active')" class="modal upgrade">
-        <form action="{{ url('users/post/upgrade/account/process') }}" method="POST" onsubmit="PostRequest(event,this,MyFunc.Completed)" onclick="event.stopPropagation();" class="child text-center column align-center g-10">
+        <form action="{{ url('users/post/upgrade/account/process') }}" method="POST" onsubmit="PostRequest(event,this,Completed)" onclick="event.stopPropagation();" class="child text-center column align-center g-10">
           {{-- csrf token --}}
           <input type="hidden" class="inp input" name="_token" value="{{ @csrf_token() }}">
             {{-- new row --}}
@@ -96,13 +96,13 @@
 @endsection
 @section('js')
     <script class="js">
-        window.MyFunc = {
-            Completed : (response)=>{
+      
+           function  Completed(response){
                 let data=JSON.parse(response);
                 if(data.status == 'success'){
-                    window.location.reload();
+                    Vitecss.navigate('{{ url()->current() }}')
                 }
             }
-        }
+        
     </script>
 @endsection
