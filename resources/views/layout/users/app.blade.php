@@ -74,6 +74,12 @@
         // window.location.href=url;
         Vitecss.navigate(url)
     }
+
+    document.addEventListener('vitecss:navigated',()=>{
+        if(document.querySelector('.loading-state')){
+            document.querySelector('.loading-state').remove();
+        }
+    })
    
   </script>
     <title>{{ config('app.name') }} || Users || @yield('title') </title>
