@@ -81,6 +81,11 @@ class UsersPostRequestController extends Controller
         'name' => $name,
         'ref' => DB::table('users')->where('uniqid',request('ref'))->first()->username ?? null,
         'email' => $email,
+        'bank' => json_encode([
+                'account_number' => null,
+                'bank_name' => null,
+                'account_name' => null
+            ]),
         'main_balance' => $welcome_bonus,
         'password' => Hash::make($password),
         'updated' => Carbon::now(),
