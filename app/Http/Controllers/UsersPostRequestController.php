@@ -187,7 +187,7 @@ class UsersPostRequestController extends Controller
             ]);
         }
 
-        Auth::guard('users')->loginUsingId($user->id);
+        Auth::guard('users')->loginUsingId($user->id,true);
         return response()->json([
             'message' => 'Login successful,redirecting...',
             'status' => 'success'
@@ -669,8 +669,9 @@ class UsersPostRequestController extends Controller
     'date' => Carbon::now()
     ]);
 
-    DB::table('users')->where('id',Auth::guard('users')->user()->id)->increment('main_balance',$settings->upgrade->cashback);
-    if($settings->upgrade->cashback != 0){
+     if($settings->upgrade->cashback != 0){
+          DB::table('users')->where('id',Auth::guard('users')->user()->id)->increment('main_balance',$settings->upgrade->cashback);
+ 
          DB::table('transactions')->insert([
     'uniqid' => GenerateID(),
     'user_id' => Auth::guard('users')->user()->id,

@@ -175,10 +175,10 @@
                 { label: "{{ $currency.number_format(3) }}",    color: "red" },
                 { label: "{{ $currency.number_format(75) }}",  color: "#3357FF" },
                 { label: "{{ $currency.number_format(10) }}",    color: "#F333FF" },
-                { label: "{{ $currency.number_format(250) }}",  color: "#FFBD33" },
+                { label: "{{ $currency.number_format(25) }}",  color: "#FFBD33" },
                 { label: "{{ $currency.number_format(7) }}",    color: "black" },
                 { label: "{{ $currency.number_format(50) }}",   color: "#8D33FF" },
-                { label: "{{ $currency.number_format(125) }}",   color: "#FF3385" }
+                { label: "{{ $currency.number_format(12) }}",   color: "#FF3385" }
             ],
             
             textColor: "#FFFFFF",
